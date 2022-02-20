@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">transit information</string>
+    <string name="route_number">Route: %s</string>
+</resources>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Light Styles -->
+    <style name="defAppLightBackground">
+        <!-- Light Background -->
+        <item name="android:background">@color/color_primary_background_light</item>
+        <item name="android:backgroundTint">@color/color_primary_background_light</item>
+    </style>
+
+    <style name="defAppLightForeground">
+        <!-- Light Background -->
+        <item name="android:background">@color/color_primary_foreground_light</item>
+        <item name="android:backgroundTint">@color/color_primary_foreground_light</item>
+    </style>
+
+    <!-- Dark Styles -->
+    <style name="defAppDarkBackground">
+        <!-- Light Background -->
+        <item name="android:background">@color/color_primary_background_dark</item>
+        <item name="android:backgroundTint">@color/color_primary_background_dark</item>
+    </style>
+
+    <style name="defAppDarkForeground">
+        <!-- Light Background -->
+        <item name="android:background">@color/color_primary_foreground_dark</item>
+        <item name="android:backgroundTint">@color/color_primary_foreground_dark</item>
+    </style>
+
+</resources>
