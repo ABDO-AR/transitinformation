@@ -2,13 +2,12 @@
 
 package com.transit.information.model
 
-import com.google.gson.annotations.SerializedName
-
 // Data(Class):
 data class Transit(
     // Fields:
     val entities: List<Entity>,
-    val header: Header
+    val header: Header,
+    var dublinBusStops: List<Stop> = ArrayList()
 )
 
 // Data(Class):

@@ -10,5 +10,5 @@ interface MainRepo {
 
     @GET("/api/production/interface")
     // Method(GetAPI):
-    fun getAPI(): Call<List<Stop>>
+    fun getAPI(): Call<Transit>
 }

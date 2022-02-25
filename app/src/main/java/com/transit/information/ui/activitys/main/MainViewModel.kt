@@ -52,24 +52,24 @@ class MainViewModel @Inject constructor(private val repository: MainRepository) 
             // Initializing:
             val call = repository.getAPI()
             // Enqueue:
-            call.enqueue(object : Callback<List<Stop>> {
+            call.enqueue(object : Callback<Transit> {
                 // Method(OnResponse):
-                override fun onResponse(call: Call<List<Stop>>, response: Response<List<Stop>>) {
+                override fun onResponse(call: Call<Transit>, response: Response<Transit>) {
                     // Processing:
                     viewModelScope.launch {
                         // Initializing:
-                        val stops = response.body()
+                        val transit = response.body()
                         // Checking:
-                        if (response.isSuccessful && stops != null) {
+                        if (response.isSuccessful && transit!!.dublinBusStops != null) {
                             // Checking:
-                            if (stops.isNotEmpty()) _state.emit(MainViewStates.APIReceived(stops.filter { it.routes.isNotEmpty() }))
+                            if (transit.dublinBusStops.isNotEmpty()) _state.emit(MainViewStates.APIReceived(transit))
                             else _state.emit(MainViewStates.APIFailure("OnResponse: Body is Empty!"))
                         } else _state.emit(MainViewStates.APIFailure("OnResponse: Body is null!"))
                     }
                 }
 
                 // Method(OnFailure):
-                override fun onFailure(call: Call<List<Stop>>, t: Throwable) {
+                override fun onFailure(call: Call<Transit>, t: Throwable) {
                     // Emitting:
                     viewModelScope.launch { _state.emit(MainViewStates.APIFailure(t.message!!)) }
                 }

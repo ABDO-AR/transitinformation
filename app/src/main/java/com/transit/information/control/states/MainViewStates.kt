@@ -1,6 +1,7 @@
 package com.transit.information.control.states
 
 import com.transit.information.model.Stop
+import com.transit.information.model.Transit
 
 sealed class MainViewStates {
 
@@ -11,5 +12,5 @@ sealed class MainViewStates {
     data class APIFailure(val error: String) : MainViewStates()
 
     // State(APIReceived):
-    data class APIReceived(val stops: List<Stop>) : MainViewStates()
+    data class APIReceived(val transit: Transit) : MainViewStates()
 }

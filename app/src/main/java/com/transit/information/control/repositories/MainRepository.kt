@@ -9,5 +9,5 @@ import javax.inject.Inject
 class MainRepository @Inject constructor() : MainRepo {
 
     // Method(GetAPI):
-    override fun getAPI(): Call<List<Stop>> = APIManager.createAPI().getAPI()
+    override fun getAPI(): Call<Transit> = APIManager.createAPI().getAPI()
 }

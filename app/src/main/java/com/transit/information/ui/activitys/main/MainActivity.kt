@@ -76,7 +76,7 @@ class MainActivity : AppCompatActivity() {
                 when (it) {
                     // Is:
                     is MainViewStates.APIFailure -> Log.d(TAG, "rendering: ${it.error}")
-                    is MainViewStates.APIReceived -> toggle(true).also { _ -> received(it.stops) }
+                    is MainViewStates.APIReceived -> toggle(true).also { _ -> received(it.transit.dublinBusStops) }
                     // Else:
                     else -> Log.d(TAG, "rendering: Nothing!")
                 }
