@@ -78,6 +78,9 @@ dependencies {
     // Apache:
     implementation group: 'commons-io', name: 'commons-io', version: '20030203.000550'
 
+    // GTFS-RT:
+    //implementation group: 'io.mobilitydata.transit', name: 'gtfs-realtime-bindings', version: '0.0.5'
+
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'com.google.android.material:material:1.5.0'

@@ -10,7 +10,7 @@ object APIManager {
 
     // Fields:
     @Suppress("MemberVisibilityCanBePrivate")
-    const val BASE_URL: String = "https://api.nationaltransport.ie"
+    const val BASE_URL: String = "http://192.168.1.8:8080"
 
     // Method(CreateClient):
     private fun createClient(): OkHttpClient = OkHttpClient().newBuilder().readTimeout(3, TimeUnit.MINUTES).connectTimeout(3, TimeUnit.MINUTES).build()

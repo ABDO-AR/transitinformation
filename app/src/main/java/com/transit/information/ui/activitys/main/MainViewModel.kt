@@ -1,3 +1,5 @@
+@file:Suppress("SENSELESS_COMPARISON")
+
 package com.transit.information.ui.activitys.main
 
 import androidx.lifecycle.ViewModel
@@ -5,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.transit.information.control.intentions.MainIntentions
 import com.transit.information.control.repositories.MainRepository
 import com.transit.information.control.states.MainViewStates
+import com.transit.information.model.Stop
 import com.transit.information.model.Transit
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
@@ -49,21 +52,24 @@ class MainViewModel @Inject constructor(private val repository: MainRepository) 
             // Initializing:
             val call = repository.getAPI()
             // Enqueue:
-            call.enqueue(object : Callback<Transit> {
+            call.enqueue(object : Callback<List<Stop>> {
                 // Method(OnResponse):
-                override fun onResponse(call: Call<Transit>, response: Response<Transit>) {
+                override fun onResponse(call: Call<List<Stop>>, response: Response<List<Stop>>) {
                     // Processing:
                     viewModelScope.launch {
                         // Initializing:
-                        val transit = response.body()
+                        val stops = response.body()
                         // Checking:
-                        if (response.isSuccessful && transit != null) _state.emit(MainViewStates.APIReceived(transit))
-                        else _state.emit(MainViewStates.APIFailure("OnResponse: Body is null!"))
+                        if (response.isSuccessful && stops != null) {
+                            // Checking:
+                            if (stops.isNotEmpty()) _state.emit(MainViewStates.APIReceived(stops.filter { it.routes.isNotEmpty() }))
+                            else _state.emit(MainViewStates.APIFailure("OnResponse: Body is Empty!"))
+                        } else _state.emit(MainViewStates.APIFailure("OnResponse: Body is null!"))
                     }
                 }
 
                 // Method(OnFailure):
-                override fun onFailure(call: Call<Transit>, t: Throwable) {
+                override fun onFailure(call: Call<List<Stop>>, t: Throwable) {
                     // Emitting:
                     viewModelScope.launch { _state.emit(MainViewStates.APIFailure(t.message!!)) }
                 }
