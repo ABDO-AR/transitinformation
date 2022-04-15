@@ -1,2 +1,2 @@
 # transitinformation
- A transit app
+ A transit app work with private server
